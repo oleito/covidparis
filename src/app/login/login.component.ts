@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,17 @@ export class LoginComponent implements OnInit {
   submitted = false;
 
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() { }
+  onLogin() {
+    console.log('boton apretado');
+    this.loginService.logIn(this.data.user_username, this.data.user_password).subscribe(res => {
+      console.log(res.data['data'])
+    }, err => {
+      console.warn(err)
+    });
+
+  }
 
 }
