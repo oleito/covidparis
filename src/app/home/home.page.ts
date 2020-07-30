@@ -10,39 +10,40 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 })
 export class HomePage implements OnInit {
 
-  personaForm = new FormGroup({
-    nombre: new FormControl('', 
-    [
-      Validators.required,
-      Validators.minLength(3),
-    ]),
-    apellido: new FormControl('', 
-    [
-      Validators.required,
-      Validators.minLength(3)
-    ]),
-    telefono: new FormControl('', 
-    [
-      Validators.required,
-      Validators.minLength(7),
-      Validators.maxLength(12)
-    ]),
-    dni: new FormControl('', 
-    [
-      Validators.required,
-      Validators.minLength(6),
-      Validators.maxLength(9)
-    ])
-  })
+  personaForm;
   loading = false;
 
   constructor(private homeService: HomeService, private toastController: ToastController) { }
   ngOnInit(): void {
-
+    this.personaForm = new FormGroup({
+      nombre: new FormControl('',
+        [
+          Validators.required,
+          Validators.minLength(3),
+        ]),
+      apellido: new FormControl('',
+        [
+          Validators.required,
+          Validators.minLength(3)
+        ]),
+      telefono: new FormControl('',
+        [
+          Validators.required,
+          Validators.minLength(7),
+          Validators.maxLength(12)
+        ]),
+      dni: new FormControl('',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(9)
+        ])
+    });
   }
+
   onAgregar() {
     this.loading = true;
-    //console.log(this.personaForm.valid);
+
     this.homeService.agregarPersona(
       this.personaForm.controls.nombre.value,
       this.personaForm.controls.apellido.value,
@@ -59,6 +60,7 @@ export class HomePage implements OnInit {
       this.dangerToast();
     });
   }
+
   //***** TOASTS  *******//
   async successToast() {
     const toast = await this.toastController.create({

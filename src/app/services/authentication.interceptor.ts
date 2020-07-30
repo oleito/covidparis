@@ -71,7 +71,6 @@ export class AuthenticationInterceptor implements HttpInterceptor {
                             console.log('error!');
                             break;
                     }
-                    console.log('error: ' + err);
                     console.log('codigo de error: ' + err.status);
                 }
             ));

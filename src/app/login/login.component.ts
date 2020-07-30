@@ -11,10 +11,9 @@ import { ToastController } from '@ionic/angular';
 })
 export class LoginComponent implements OnInit {
 
-  data = { user_username: '', user_password: '' };
+  usuario = { user_username: '', user_password: '' };
   submitted = false;
   loading = false;
-
 
   constructor(
     private loginService: LoginService,
@@ -22,14 +21,13 @@ export class LoginComponent implements OnInit {
     private toastController: ToastController) { }
 
   ngOnInit() {
-    this.data.user_username = 'sistemas@parisautos.com.ar';
-    this.data.user_password = 'nadarisca32';
   }
+
   onLogin() {
     this.submitted = true;
     this.loading = true;
     this.loginService
-      .logIn(this.data.user_username, this.data.user_password)
+      .logIn(this.usuario.user_username, this.usuario.user_password)
       .subscribe(res => {
         this.router.navigate(['/home']);
         this.loading = false;
@@ -38,8 +36,8 @@ export class LoginComponent implements OnInit {
         this.presentToast();
         this.loading = false;
       });
-
   }
+
   async presentToast() {
     const toast = await this.toastController.create({
       color: 'danger',
@@ -49,5 +47,4 @@ export class LoginComponent implements OnInit {
     });
     toast.present();
   }
-
 }

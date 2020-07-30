@@ -17,7 +17,7 @@
     <ion-list>
       <ion-item>
         <ion-label position="stacked" color="primary">Username</ion-label>
-        <ion-input placeholder='sistemas@parisautos.com.ar' [(ngModel)]="data.user_username" name="username" type="text"
+        <ion-input placeholder='usuario@parisautos.com.ar' [(ngModel)]="usuario.user_username" name="username" type="text"
           #username="ngModel" spellcheck="false" autocapitalize="off" required>
         </ion-input>
       </ion-item>
@@ -30,7 +30,7 @@
 
       <ion-item>
         <ion-label position="stacked" color="primary">Password</ion-label>
-        <ion-input [(ngModel)]="data.user_password" name="password" type="password" #password="ngModel" required>
+        <ion-input [(ngModel)]="usuario.user_password" name="password" type="password" #password="ngModel" required>
         </ion-input>
       </ion-item>
 
