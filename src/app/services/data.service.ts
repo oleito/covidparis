@@ -11,6 +11,7 @@ export class DataService {
 
   constructor(private httpClient: HttpClient) {
     this.apiURL = 'http://localhost/Proyectos/parisAPI/public/';
+    this.apiURL = 'http://api.parisautos.com.ar/public/';
   }
 
   getData(endpoint: string): Observable<any> {

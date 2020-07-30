@@ -14,28 +14,28 @@
   </ion-header>
 
   <div id="container">
-    <form #loginForm="ngForm" novalidate>
+    <form [formGroup]="personaForm" novalidate>
       <ion-list>
         <ion-item>
           <ion-label position="stacked" color="primary">Nombre</ion-label>
-          <ion-input [(ngModel)]="persona.nombre" name="username" type="text" #username="ngModel" spellcheck="false"
-            autocapitalize="off" required>
+          <ion-input formControlName="nombre" name="nombre" type="text" spellcheck="false" autocapitalize="off">
           </ion-input>
+
         </ion-item>
 
         <ion-item>
           <ion-label position="stacked" color="primary">Apellido</ion-label>
-          <ion-input [(ngModel)]="persona.apellido" name="password" type="text" #password="ngModel" required>
+          <ion-input formControlName="apellido" name="apellido" type="text">
           </ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked" color="primary">Telefono</ion-label>
-          <ion-input [(ngModel)]="persona.telefono" name="password" type="tel" #password="ngModel" required>
+          <ion-input formControlName="telefono" name="telefono" type="tel">
           </ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="stacked" color="primary">Dni</ion-label>
-          <ion-input [(ngModel)]="persona.dni" name="password" type="number" #password="ngModel" required>
+          <ion-input formControlName="dni" name="dni" type="number">
           </ion-input>
         </ion-item>
 
@@ -43,7 +43,8 @@
 
       <ion-row>
         <ion-col>
-          <ion-button (click)="onAgregar()" type="submit" expand="block">Agregar</ion-button>
+          <ion-button [disabled]="!personaForm.valid" (click)="onAgregar()" type="submit" expand="block">Agregar
+          </ion-button>
         </ion-col>
       </ion-row>
       <ion-row>

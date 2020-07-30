@@ -1,31 +1,65 @@
 import { HomeService } from './../services/home.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
-  persona = { nombre: '', apellido: '', dni: '', telefono: '' };
+export class HomePage implements OnInit {
+
+  personaForm = new FormGroup({
+    nombre: new FormControl('', 
+    [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+    apellido: new FormControl('', 
+    [
+      Validators.required,
+      Validators.minLength(3)
+    ]),
+    telefono: new FormControl('', 
+    [
+      Validators.required,
+      Validators.minLength(7),
+      Validators.maxLength(12)
+    ]),
+    dni: new FormControl('', 
+    [
+      Validators.required,
+      Validators.minLength(6),
+      Validators.maxLength(9)
+    ])
+  })
   loading = false;
 
-
-
   constructor(private homeService: HomeService, private toastController: ToastController) { }
+  ngOnInit(): void {
+
+  }
   onAgregar() {
     this.loading = true;
-    this.homeService.agregarPersona(this.persona.nombre, this.persona.apellido, this.persona.dni, this.persona.telefono).subscribe(res => {
+    //console.log(this.personaForm.valid);
+    this.homeService.agregarPersona(
+      this.personaForm.controls.nombre.value,
+      this.personaForm.controls.apellido.value,
+      this.personaForm.controls.dni.value,
+      this.personaForm.controls.telefono.value
+    ).subscribe(res => {
       console.log(res);
       this.loading = false;
       this.successToast();
+      this.personaForm.reset();
     }, err => {
       console.log(err);
       this.loading = false;
-
+      this.dangerToast();
     });
   }
+  //***** TOASTS  *******//
   async successToast() {
     const toast = await this.toastController.create({
       color: 'success',
@@ -34,6 +68,7 @@ export class HomePage {
     });
     toast.present();
   }
+
   async dangerToast() {
     const toast = await this.toastController.create({
       color: 'danger',
