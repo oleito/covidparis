@@ -9,16 +9,16 @@
 </ion-header>
 
 <ion-content>
-  <!-- <div class="login-logo">
-    <img src="assets/img/appicon.svg" alt="Ionic logo">
-  </div> -->
+  <div class="login-logo">
+    <img src="assets/img/logo_paris.jpg" alt="Paris logo">
+  </div>
 
   <form #loginForm="ngForm" novalidate>
     <ion-list>
       <ion-item>
         <ion-label position="stacked" color="primary">Username</ion-label>
-        <ion-input [(ngModel)]="data.user_username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
-          required>
+        <ion-input placeholder='sistemas@parisautos.com.ar' [(ngModel)]="data.user_username" name="username" type="text"
+          #username="ngModel" spellcheck="false" autocapitalize="off" required>
         </ion-input>
       </ion-item>
 
@@ -40,17 +40,18 @@
         </p>
       </ion-text>
 
-    </ion-list> 
+    </ion-list>
 
     <ion-row>
       <ion-col>
-        <ion-button (click)="onLogin()" type="submit" expand="block">Login</ion-button>
+        <ion-button (click)="onLogin()" type="submit" expand="block" [disabled]="loading">Login</ion-button>
       </ion-col>
-      <ion-col>
-        <ion-button (click)="onSignup()" color="light" expand="block">Signup</ion-button>
+    </ion-row>
+    <ion-row>
+      <ion-col [hidden]="!loading" class="spinner">
+        <ion-spinner name="lines"></ion-spinner>
       </ion-col>
     </ion-row>
   </form>
 
 </ion-content>
-

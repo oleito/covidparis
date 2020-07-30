@@ -17,7 +17,6 @@ export class DataService {
     return this.httpClient.get(this.apiURL + endpoint);
   }
   postData(endpoint: string, data): Observable<any> {
-    console.log(data);
     return this.httpClient.post(this.apiURL + endpoint, data);
   }
 

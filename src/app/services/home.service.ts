@@ -4,17 +4,19 @@ import { DataService } from './data.service';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class HomeService {
 
   constructor(private dataService: DataService) { }
 
-  logIn(username, password) {
+  agregarPersona(nombre, apellido, telefono, dni) {
     let req = {
       data: {
-        user_username: username,
-        user_password: password
+        nombre: nombre,
+        apellido: apellido,
+        telefono: telefono,
+        dni: dni
       }
     }
-    return this.dataService.postData('login', req);
+    return this.dataService.postData('personas', req);
   }
 }

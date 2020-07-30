@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Agregar visitante
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,48 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Agregar visita</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <form #loginForm="ngForm" novalidate>
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked" color="primary">Nombre</ion-label>
+          <ion-input [(ngModel)]="persona.nombre" name="username" type="text" #username="ngModel" spellcheck="false"
+            autocapitalize="off" required>
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked" color="primary">Apellido</ion-label>
+          <ion-input [(ngModel)]="persona.apellido" name="password" type="text" #password="ngModel" required>
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked" color="primary">Telefono</ion-label>
+          <ion-input [(ngModel)]="persona.telefono" name="password" type="tel" #password="ngModel" required>
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked" color="primary">Dni</ion-label>
+          <ion-input [(ngModel)]="persona.dni" name="password" type="number" #password="ngModel" required>
+          </ion-input>
+        </ion-item>
+
+      </ion-list>
+
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="onAgregar()" type="submit" expand="block">Agregar</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col [hidden]="!loading" class="spinner">
+          <ion-spinner name="lines"></ion-spinner>
+        </ion-col>
+      </ion-row>
+    </form>
   </div>
 </ion-content>
