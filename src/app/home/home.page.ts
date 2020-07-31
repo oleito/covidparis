@@ -47,8 +47,8 @@ export class HomePage implements OnInit {
     this.homeService.agregarPersona(
       this.personaForm.controls.nombre.value,
       this.personaForm.controls.apellido.value,
-      this.personaForm.controls.dni.value,
-      this.personaForm.controls.telefono.value
+      this.personaForm.controls.telefono.value,
+      this.personaForm.controls.dni.value
     ).subscribe(res => {
       console.log(res);
       this.loading = false;

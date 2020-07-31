@@ -10,14 +10,14 @@
 
 <ion-content>
   <div class="login-logo">
-    <img src="assets/img/logo_paris.jpg" alt="Paris logo">
+    <img src="assets/img/logo_paris_.jpg" alt="Paris logo">
   </div>
 
   <form #loginForm="ngForm" novalidate>
     <ion-list>
       <ion-item>
         <ion-label position="stacked" color="primary">Username</ion-label>
-        <ion-input placeholder='usuario@parisautos.com.ar' [(ngModel)]="usuario.user_username" name="username" type="text"
+        <ion-input placeholder='usuario@parisautos.com.ar' [(ngModel)]="usuario.user_username" name="username" type="email"
           #username="ngModel" spellcheck="false" autocapitalize="off" required>
         </ion-input>
       </ion-item>
